@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-	before_action :authenticate_user!
-	#ビフォーアクションはこのコントローラーが実行される前という意味
-	#authenticate userはdeviseで用意されているメソッドで、ログイン認証がされていないとrootパスにリダイレクトされる。
-	#アプリケーションコントローラーに記述すれば全適用されるが、今回はhomeコントローラーは適用したくないので、booksとusersに適用
-	before_action :baria_user, only: [:edit, :update]
+   before_action :authenticate_user!
+   #このコードによってログインをしてないと他のアクションを行うことができない
+
+   before_action :ensure_current_user,{only:[:edit, :update]}
+   #別のユーザーの編集をできないようにする
 
   def show
   	@user = User.find(params[:id])
@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   def edit
   	@user = User.find(params[:id])
   end
+
 
   def update
   	@user = User.find(params[:id])
@@ -41,4 +42,11 @@ class UsersController < ApplicationController
   	end
    end
 
+   #別のユーザーの編集をできないようにする
+   def ensure_current_user
+    if current_user.id != params[:id].to_i
+      redirect_to user_path(current_user)
+    end
+
+end
 end

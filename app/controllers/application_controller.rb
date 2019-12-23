@@ -4,9 +4,8 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
 
   protected
-  #sign_in後のredirect先変更する。マイページを指定。変更しないとrootに飛ぶ。
   def after_sign_in_path_for(resource)
-  	user_path(resource)
+    user_path(current_user.id)
   end
 
   #sign_out後のredirect先変更する。rootパスへ。rootパスはhome topを設定済み。
