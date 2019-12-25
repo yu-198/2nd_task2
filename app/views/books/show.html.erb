@@ -38,7 +38,7 @@
 							<!-- destroyアクション -->
 								<%= link_to book_favorites_path(@book), method: :delete do %>
 									<i class = "fa fa-heart" aria-hidden = "ture" style ="color: red;"></i>
-									<%= @book.favorites.cout%>
+									<%= @book.favorites.count%>
 								<% end %>
 							<% else %>
 								<!-- createアクション -->
