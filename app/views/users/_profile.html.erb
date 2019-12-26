@@ -12,7 +12,23 @@
 			<th>introduction</th>
 			<th><%= user.introduction %></th>
 		</tr>
+		<tr>
+			<th>follows</th>
+			<th>
+				<%= link_to follows_user_path(user.id) do%>
+					<%=user.followings.count%>
+				<% end %>
+		</tr>
+		<tr>
+			<th>follwers</th>
+			<th>
+				<%= link_to followers_user_path(user.id) do%>
+				<%= user.followers.count%></th>
+				<% end %>
+			</th>
+		</tr>
 </table>
+
 
 <div class="row">
 	<%= link_to '',edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{user.id}" %>
