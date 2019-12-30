@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  get "search" => "searches#search"
   root to: 'home#top'
   get 'home/about' => 'home#about'
+
   devise_for :users
   resources :users,only: [:show,:index,:edit,:update]
   #user_showでformに対して二つの変数を入れていて

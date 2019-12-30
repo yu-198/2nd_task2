@@ -1,0 +1,48 @@
+<div class="container">
+	<div class="row">
+		<% if @user_or_book == '1'%>
+		 	<h1>User search</h1>
+		    	<table class="table">
+		        	<%@users.each do |user|%>
+		            	<thead>
+		                	<tr>
+		                        <th>image</th>
+		                        <th>name</th>
+		                        <th>フォロー数</th>
+		                        <th>フォロワー数</th>
+		                	</tr>
+		                </thead>
+		                <tbody>
+		                	<tr>
+		                		<td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg"%></td>
+		                		<td><%= user.name%></td>
+		                		<td><%= user.followings.count%></td>
+		                		<td><%= user. followers.count%></td>
+		                	</tr>
+		                </tbody>
+		            <% end%>
+		                </table>
+		<% elsif @user_or_book == "2" %>
+			<h2>Book search</h2>
+		    	<table class="table">
+		        	<% @books.each do |book| %>
+		            	<thead>
+		                	<tr>
+		                    	<th>title</th>
+		                        <th>body</th>
+		                        <th>コメント数</th>
+		                        <th>いいねの数</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                	<td><%= book.title %></td>
+		                	<td><%= book.body%></td>
+		                	<td><%= book.book_comments.count%></td>
+		                	<td><%= book.favorites.count%></td>
+		                </tbody>
+		            <% end %>
+		        </table>
+		<% else %>
+		<% end %>
+	</div>
+</div>
